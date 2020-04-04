@@ -1,9 +1,10 @@
+using System.Threading.Tasks;
 using Domain.Entities;
 
 namespace Domain.Repositories
 {
     public interface IHackathonRepository
     {
-         Hackathon CreateHackathon(Hackathon hackathon);
+        Task<Hackathon> CreateHackathon(Hackathon hackathon);
     }
 }
