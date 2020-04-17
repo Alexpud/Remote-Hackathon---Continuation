@@ -18,11 +18,12 @@ namespace Domain.Services.Concrete
             _mapper = mapper;
         }
 
-        public async Task<Hackathon> CreateHackathon(HackathonDTO dto)
+        public async Task<HackathonDTO> CreateHackathon(HackathonDTO dto)
         {
             var hackathon = _mapper.Map<Hackathon>(dto);
             hackathon.ThrowIfInvalid();
-            return  await _hackathonRepository.CreateHackathon(hackathon);
+            var createdHackathon = await _hackathonRepository.CreateHackathon(hackathon);
+            return  _mapper.Map<HackathonDTO>(createdHackathon);
         }
     }
 }

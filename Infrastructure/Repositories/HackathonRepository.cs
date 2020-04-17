@@ -8,7 +8,7 @@ namespace Infrastructure.Repositories
     {
         public async Task<Hackathon> CreateHackathon(Hackathon hackathon)
         {
-            throw new System.NotImplementedException();
+            return hackathon;
         }
     }
 }
