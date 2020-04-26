@@ -33,6 +33,7 @@ namespace Application
             services.AddAutoMapper(typeof(Startup));
             services.AddScoped<IHackathonService, HackathonService>();
             services.AddScoped<IHackathonRepository, HackathonRepository>();
+            services.AddControllers(options => options.Filters.Add(new HttpExceptionFilter()));
             services.AddControllers();
         }
 
