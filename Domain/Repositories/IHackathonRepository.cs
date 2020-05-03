@@ -6,5 +6,7 @@ namespace Domain.Repositories
     public interface IHackathonRepository
     {
         Task<Hackathon> CreateHackathon(Hackathon hackathon);
+
+        Task<Hackathon> GetHackathon(int hackathonId);
     }
 }

@@ -63,5 +63,46 @@ namespace Tests.Domain.Services
             // Act
             Assert.ThrowsAsync<ArgumentOutOfRangeException>(() => _hackathonService.CreateHackathon(dto));
         }
+
+        [Fact]
+        public async void GetHackathon_ShouldReturnHackathon_When_HackathonIsFound()
+        {
+            // Arrange
+            var dto = new HackathonDTO();
+            dto.ID = 1;
+
+            _mapperMock.Setup(x => x.Map<HackathonDTO>(It.IsAny<Hackathon>()))
+                .Returns(dto);
+
+            _hackathonRepositoryMock.Setup(x => x.GetHackathon(It.IsAny<int>()))
+                .ReturnsAsync(new Hackathon());
+            
+            _hackathonService = new HackathonService(_hackathonRepositoryMock.Object, _mapperMock.Object);
+            
+            // Act
+            var hackathonDto = await _hackathonService.GetHackathon(dto.ID);
+
+            // Assert
+            Assert.Equal(hackathonDto.ID, dto.ID);
+        }
+
+        [Fact]
+        public async void GetHacakthon_ShouldReturnAnEmptyHackathon_When_HackathonIsNotFound()
+        {
+            var dto = new HackathonDTO();
+            var newHackathonID = 0;
+
+            Hackathon hackathon = null;
+            _hackathonRepositoryMock.Setup(x => x.GetHackathon(It.IsAny<int>()))
+                .ReturnsAsync(hackathon);
+            
+            _hackathonService = new HackathonService(_hackathonRepositoryMock.Object, _mapperMock.Object);
+            
+            // Act
+            var hackathonDto = await _hackathonService.GetHackathon(dto.ID);
+
+            // Assert
+            Assert.Equal(hackathonDto.ID, newHackathonID);
+        }
     }
 }
