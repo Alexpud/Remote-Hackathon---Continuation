@@ -10,5 +10,14 @@ namespace Infrastructure.Repositories
         {
             return hackathon;
         }
+
+        public Task<Hackathon> GetHackathon(int hackathonId)
+        {
+            return Task.Run(() => new Hackathon(){
+                ID = 1,
+                Name = "NAME",
+                Theme = "THEME"
+            });
+        }
     }
 }

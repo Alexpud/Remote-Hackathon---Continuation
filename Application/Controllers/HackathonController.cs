@@ -21,5 +21,12 @@ namespace Application.Controllers
             var createdHackathon = await _hackathonService.CreateHackathon(hackathon);
             return CreatedAtAction(nameof(CreateHackathon), new {id = createdHackathon.ID}, createdHackathon);
         }
+
+        [HttpGet("{hacakthonID}")]
+        public async Task<ActionResult<HackathonDTO>> GetHacakthon(int hackathonID)
+        {
+            var hackathon = await _hackathonService.GetHackathon(hackathonID);
+            return Ok(hackathon);
+        }
     }
 }
