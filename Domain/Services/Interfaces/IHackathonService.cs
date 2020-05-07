@@ -6,5 +6,6 @@ namespace Domain.Services.Interfaces
     public interface IHackathonService
     {
         Task<HackathonDTO> CreateHackathon(HackathonDTO dto);    
+        Task<HackathonDTO> GetHackathon(int hackathonID);
     }
 }

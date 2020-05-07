@@ -25,5 +25,11 @@ namespace Domain.Services.Concrete
             var createdHackathon = await _hackathonRepository.CreateHackathon(hackathon);
             return  _mapper.Map<HackathonDTO>(createdHackathon);
         }
+
+        public async Task<HackathonDTO> GetHackathon(int hackathonID)
+        {
+            var hackathon = await _hackathonRepository.GetHackathon(hackathonID);
+            return hackathon == null ? new HackathonDTO() : _mapper.Map<HackathonDTO>(hackathon);
+        }
     }
 }
