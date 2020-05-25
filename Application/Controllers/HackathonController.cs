@@ -26,6 +26,10 @@ namespace Application.Controllers
         public async Task<ActionResult<HackathonDTO>> GetHacakthon(int hackathonID)
         {
             var hackathon = await _hackathonService.GetHackathon(hackathonID);
+            
+            if (hackathon.ID == 0)
+                return NotFound();
+
             return Ok(hackathon);
         }
     }
